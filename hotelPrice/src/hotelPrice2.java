@@ -24,9 +24,9 @@ public class hotelPrice2 {
         //get normal days
         totalDate = totalDate > 50 ? 50 : totalDate % 50;
 
-        int sunDay = totalDate/7;
+        int sunDay = totalDate / 7;
         //(totalDate%7)/6 -> in case endDay ends at Saturday.
-        int satDay = totalDate/7 + (totalDate%7)/6;
+        int satDay = totalDate / 7 + (totalDate % 7) / 6;
         int weekDay = totalDate - sunDay - satDay;
         //get price of normal rate.
         regularPrice+= sunDay * 5 + satDay * 3 + weekDay * 2;
