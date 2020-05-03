@@ -61,7 +61,7 @@ public class hotelPrice2 {
         //so 1-1 is 0, nothing get added
         //while if startMonth<endMonth, startMonth/endMont = 0, so 1-0 is 1
         totalDate += ((startMonth + 1) % 2) * (1 - startMonth / endMonth);
-
+ 
         return totalDate;
     }
 }
