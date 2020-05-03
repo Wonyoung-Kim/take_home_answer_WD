@@ -17,22 +17,30 @@ public class hotelPrice2 {
         this.startDay = startDay;
     }
     public int getPrice() {
-        getTotalDate();
-        int regularPrice = 0;
-        //get flat rate number of days
-        int flatRateApllied = totalDate > 50 ? totalDate - 50 : 0;
-        //get normal days
-        totalDate = totalDate > 50 ? 50 : totalDate % 50;
+ getTotalDate();
+        int totalPrice = 0;
+        int absDiff = Math.abs(totalDate - 50);
 
-        int sunDay = totalDate / 7;
-        //(totalDate%7)/6 -> in case endDay ends at Saturday.
-        int satDay = totalDate / 7 + (totalDate % 7) / 6;
-        int weekDay = totalDate - sunDay - satDay;
-        //get price of normal rate.
-        regularPrice+= sunDay * 5 + satDay * 3 + weekDay * 2;
-        //return normal price + flat price.
-        return regularPrice + flatRateApllied;
+        //getting minimum value between
+        int regularRateDays = (totalDate + 51 - absDiff) / 2;
 
+        int flatRateDays = totalDate - regularRateDays;
+
+        totalPrice += flatRateDays;
+
+        //calculation of regular rate days
+        regularRateDays = totalDate - flatRateDays;
+
+        //price for weekday
+        totalPrice += regularRateDays * 2;
+
+        //add the whole week difference (sat+sun price - weekday price)
+        totalPrice += (regularRateDays / 7) * 4;
+
+        //add the stray saturday if any
+        totalPrice += (regularRateDays % 7) / 6;
+
+        return totalPrice;
     }
     public int getTotalDate() {
         //int gapOfMonth = endMonth - startMonth;
