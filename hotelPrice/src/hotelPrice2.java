@@ -17,9 +17,10 @@ public class hotelPrice2 {
         this.startDay = startDay;
     }
     public int getPrice() {
- getTotalDate();
+        getTotalDate();
         int totalPrice = 0;
-        int absDiff = Math.abs(totalDate - 50);
+        int distance = (totalDate - 50);
+        int absDiff = (distance ^ (distance >> 31)) - (distance >> 31);
 
         //getting minimum value between
         int regularRateDays = (totalDate + 51 - absDiff) / 2;
